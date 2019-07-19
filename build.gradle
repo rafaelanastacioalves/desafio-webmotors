@@ -25,3 +25,30 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+ext {
+    compileSdkVersionExt = 28
+    buildToolsVersionExt = "28.0.3"
+    minSdkVersionExt = 15
+    targetSdkVersionExt = 28
+    crashlytics = "2.7.1@aar"
+    androidSupportLibrariesExt = "28.+"
+    firebaseUiExt = "3.1.0"
+    firebaseExt = "11.4.2"
+    facebookAndroidExt = "4.27.0"
+    retrofitExt = "2.4.0"
+    okhttp3Ext = "3.10.0"
+    androidConstraintLayout = "1.0.2"
+    jakewhartonStuff = "8.4.0"
+    timberExt = "4.5.1"
+    picassoExt = "2.71828"
+    espressoExt = "3.1.0"
+    mockWebServerExt = "3.8.0"
+    testRunnerExt = "1.0.1"
+    archLifecycleVersion = "1.1.1"
+    daggerVersion = "2.+"
+    rxAndroidVersion = "2.0.+"
+    rxJavaVersion = "2.x.x"
+    junitVersion = "4.12"
+    mockitoVersion = "1.10.19"
+}
