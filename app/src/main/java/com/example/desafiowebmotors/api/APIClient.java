@@ -2,7 +2,7 @@ package com.example.desafiowebmotors.api;
 
 import com.example.desafiowebmotors.model.Make;
 import com.example.desafiowebmotors.model.Model;
-import com.example.desafiowebmotors.model.Vehicles;
+import com.example.desafiowebmotors.model.Vehicle;
 import com.example.desafiowebmotors.model.Version;
 
 import java.util.List;
@@ -10,6 +10,7 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface APIClient {
 
@@ -24,6 +25,6 @@ public interface APIClient {
     Call<List<Version>> getVersionList(@Path("ModelID") int id);
 
     @GET("/api/OnlineChallenge/Vehicles")
-    Call<List<Vehicles>> getVehiclesList(@Path("Page") int id);
+    Call<List<Vehicle>> getVehiclesList(@Query("Page") int id);
 
 }

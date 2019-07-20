@@ -1,10 +1,8 @@
 package com.example.desafiowebmotors.repository;
 
-import android.arch.lifecycle.LiveData;
-
 import com.example.desafiowebmotors.api.APIClient;
 import com.example.desafiowebmotors.api.ServiceGenerator;
-import com.example.desafiowebmotors.model.Vehicles;
+import com.example.desafiowebmotors.model.Vehicle;
 
 
 import java.io.IOException;
@@ -20,7 +18,7 @@ import retrofit2.Response;
 @Singleton
 public class AppRepository {
 
-    public Single<List<Vehicles>> getVehiclesList(int page) {
+    public Single<List<Vehicle>> getVehiclesList(int page) {
         return Single.create(emitter -> {
             //synchronous logic in a thread apart
 
@@ -30,16 +28,16 @@ public class AppRepository {
 
             // not cached...
             APIClient apiClient = ServiceGenerator.createService(APIClient.class);
-            Call<List<Vehicles>> retrofitCall = apiClient.getVehiclesList(page);
+            Call<List<Vehicle>> retrofitCall = apiClient.getVehiclesList(page);
 
-            retrofitCall.enqueue(new Callback<List<Vehicles>>() {
+            retrofitCall.enqueue(new Callback<List<Vehicle>>() {
                 @Override
-                public void onResponse(Call<List<Vehicles>> call, Response<List<Vehicles>> response) {
+                public void onResponse(Call<List<Vehicle>> call, Response<List<Vehicle>> response) {
                     if (response.isSuccessful()) {
-                        List<Vehicles> vehiclesList = response.body();
+                        List<Vehicle> vehicleList = response.body();
 
                         // here we get again from DB as we obey the "single source of truth" approach
-                        emitter.onSuccess(vehiclesList);
+                        emitter.onSuccess(vehicleList);
 
                     } else {
 
@@ -55,7 +53,7 @@ public class AppRepository {
                 }
 
                 @Override
-                public void onFailure(Call<List<Vehicles>> call, Throwable t) {
+                public void onFailure(Call<List<Vehicle>> call, Throwable t) {
 
                     // IO error cases
                     emitter.onError(t);

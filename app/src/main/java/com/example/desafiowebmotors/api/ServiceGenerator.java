@@ -10,8 +10,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ServiceGenerator {
 
-    private static final AppInterceptor appInterceptor = new AppInterceptor();
-
 
     public static <S> S createService(Class<S> serviceClass) {
 

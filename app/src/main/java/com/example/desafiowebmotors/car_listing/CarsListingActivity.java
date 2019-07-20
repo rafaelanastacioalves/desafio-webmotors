@@ -3,9 +3,6 @@ package com.example.desafiowebmotors.car_listing;
 import android.arch.lifecycle.ViewModelProviders;
 import android.arch.paging.PagedList;
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.annotation.VisibleForTesting;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,13 +10,15 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.example.desafiowebmotors.R;
+import com.example.desafiowebmotors.car_detailing.CarDetailingActivity;
 import com.example.desafiowebmotors.listeners.RecyclerViewClickListener;
-import com.example.desafiowebmotors.model.Vehicles;
+import com.example.desafiowebmotors.model.Vehicle;
 
 import timber.log.Timber;
 
 public class CarsListingActivity extends AppCompatActivity implements RecyclerViewClickListener {
 
+    private static final String CARDETAIL_EXTRA = "car_detail_extra";
     private final RecyclerViewClickListener mClickListener = this;
     private RepoListAdapter mRepoListAdapter;
     private RecyclerView mRecyclerView;
@@ -38,7 +37,7 @@ public class CarsListingActivity extends AppCompatActivity implements RecyclerVi
     private void subscribe() {
         mLiveDataRepoListViewModel = ViewModelProviders.of(this).get(LiveDataRepoListViewModel.class);
 
-        mLiveDataRepoListViewModel.getMainEntityList().observe(this, mainEntities -> {
+        mLiveDataRepoListViewModel.getCarList().observe(this, mainEntities -> {
             Timber.d("On Changed");
             populateRecyclerView(mainEntities);
         });
@@ -65,7 +64,7 @@ public class CarsListingActivity extends AppCompatActivity implements RecyclerVi
     }
 
 
-    private void populateRecyclerView(PagedList<Vehicles> data) {
+    private void populateRecyclerView(PagedList<Vehicle> data) {
         mRepoListAdapter.submitList(data);
 
     }
@@ -73,8 +72,10 @@ public class CarsListingActivity extends AppCompatActivity implements RecyclerVi
 
     @Override
     public void onClick(View view, int position) {
-        Vehicles repo = mRepoListAdapter.getCurrentList().get(position);
-//
+        Vehicle vehicle = mRepoListAdapter.getCurrentList().get(position);
+        Intent i = new Intent(this, CarDetailingActivity.class);
+        i.putExtra(CARDETAIL_EXTRA, vehicle);
+        startActivity(i);
 
     }
 

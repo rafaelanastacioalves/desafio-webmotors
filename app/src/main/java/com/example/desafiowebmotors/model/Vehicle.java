@@ -2,7 +2,9 @@ package com.example.desafiowebmotors.model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Vehicles {
+import java.io.Serializable;
+
+public class Vehicle implements Serializable {
 
     @SerializedName("ID")
     public int id;

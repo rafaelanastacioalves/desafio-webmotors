@@ -4,10 +4,9 @@ import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.ViewModel;
 import android.arch.paging.LivePagedListBuilder;
 import android.arch.paging.PagedList;
-import android.icu.util.VersionInfo;
 import android.support.annotation.NonNull;
 
-import com.example.desafiowebmotors.model.Vehicles;
+import com.example.desafiowebmotors.model.Vehicle;
 import com.example.desafiowebmotors.repository.DataSourceFactory;
 
 
@@ -17,14 +16,14 @@ import static android.arch.lifecycle.Transformations.switchMap;
 
 public class LiveDataRepoListViewModel extends ViewModel {
 
-    private LiveData<PagedList<Vehicles>> mMainEntityPagedList = setupPagedList();
+    private LiveData<PagedList<Vehicle>> mMainEntityPagedList = setupPagedList();
     private LiveData<Boolean> mIsLoading;
 
 
     @NonNull
     private LiveData setupPagedList() {
 
-        DataSourceFactory dataSourceFactory = new DataSourceFactory("Java", "start");
+        DataSourceFactory dataSourceFactory = new DataSourceFactory();
         mIsLoading = switchMap(dataSourceFactory.getDataSource(), input -> input.getLiveLoadStatus());
 
         return new LivePagedListBuilder(dataSourceFactory,10)
@@ -32,7 +31,7 @@ public class LiveDataRepoListViewModel extends ViewModel {
                 .build();
     }
 
-    public LiveData<PagedList<Vehicles>> getMainEntityList() {
+    public LiveData<PagedList<Vehicle>> getCarList() {
         return mMainEntityPagedList;
     }
 
