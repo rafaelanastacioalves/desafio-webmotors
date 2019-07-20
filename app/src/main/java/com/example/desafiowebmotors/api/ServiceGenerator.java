@@ -1,6 +1,7 @@
 package com.example.desafiowebmotors.api;
 
-import com.example.rafaelanastacioalves.moby.BuildConfig;
+
+import com.example.desafiowebmotors.BuildConfig;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;

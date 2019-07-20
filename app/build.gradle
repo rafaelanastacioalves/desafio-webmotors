@@ -1,20 +1,44 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion rootProject.compileSdkVersionExt
+    buildToolsVersion rootProject.buildToolsVersionExt
     defaultConfig {
-        applicationId "com.example.desafiowebmotors"
-        minSdkVersion 15
-        targetSdkVersion 28
-        versionCode 1
-        versionName "1.0"
+
+        applicationId "com.example.rafaelanastacioalves"
+        minSdkVersion rootProject.minSdkVersionExt
+        targetSdkVersion rootProject.targetSdkVersionExt
+        versionCode 11
+        versionName "0.1.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
     }
+
+    testBuildType "instrumentation"
     buildTypes {
+
+        buildTypes.each {
+            it.buildConfigField "String", "API_BASE_URL", '"https://api.github.com"'
+            it.buildConfigField "boolean", "IS_TEST", 'false'
+
+        }
+        debug {
+        }
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+        instrumentation {
+            initWith(buildTypes.debug)
+            testCoverageEnabled = true
+            buildConfigField "String", "API_BASE_URL", '"http://localhost:1234"'
+            buildConfigField "boolean", "IS_TEST", 'true'
+
+        }
+    }
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
     }
 }
 
@@ -76,4 +100,7 @@ dependencies {
 
     implementation "io.reactivex.rxjava2:rxandroid:$rootProject.rxAndroidVersion"
     implementation "io.reactivex.rxjava2:rxjava:$rootProject.rxJavaVersion"
+
+    // paging library
+    implementation "android.arch.paging:runtime:$rootProject.pagingVersion"
 }

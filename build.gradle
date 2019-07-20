@@ -51,4 +51,5 @@ ext {
     rxJavaVersion = "2.x.x"
     junitVersion = "4.12"
     mockitoVersion = "1.10.19"
+    pagingVersion = "1.0.+"
 }

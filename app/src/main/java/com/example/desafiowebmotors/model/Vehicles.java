@@ -23,5 +23,5 @@ public class Vehicles {
     @SerializedName("Color")
     public String color;
 
-    
+
 }

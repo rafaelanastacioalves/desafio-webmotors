@@ -4,8 +4,6 @@ import com.example.desafiowebmotors.model.Make;
 import com.example.desafiowebmotors.model.Model;
 import com.example.desafiowebmotors.model.Vehicles;
 import com.example.desafiowebmotors.model.Version;
-import com.example.rafaelanastacioalves.moby.domain.entities.EntityDetails;
-import com.example.rafaelanastacioalves.moby.domain.entities.MainEntity;
 
 import java.util.List;
 
