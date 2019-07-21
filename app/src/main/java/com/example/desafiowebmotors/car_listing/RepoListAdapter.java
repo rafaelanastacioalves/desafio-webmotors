@@ -26,7 +26,7 @@ public class RepoListAdapter extends PagedListAdapter<Vehicle, CarViewHolder> {
     @Override
     public CarViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         return new CarViewHolder(LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.repo_viewholder, parent, false), recyclerViewClickListener);
+                .inflate(R.layout.vehicle_viewholder, parent, false), recyclerViewClickListener);
     }
 
 

@@ -12,8 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".car_detailing.CarDetailingActivity"></activity>
-        <activity android:name=".car_listing.CarsListingActivity">
+        <activity android:name=".car_detailing.CarDetailingActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".car_listing.CarsListingActivity"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

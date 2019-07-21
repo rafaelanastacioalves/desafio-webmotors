@@ -16,9 +16,10 @@ import com.example.desafiowebmotors.model.Vehicle;
 
 import timber.log.Timber;
 
+import static com.example.desafiowebmotors.car_detailing.CarDetailingActivity.CAR_DETAIL_EXTRA;
+
 public class CarsListingActivity extends AppCompatActivity implements RecyclerViewClickListener {
 
-    private static final String CARDETAIL_EXTRA = "car_detail_extra";
     private final RecyclerViewClickListener mClickListener = this;
     private RepoListAdapter mRepoListAdapter;
     private RecyclerView mRecyclerView;
@@ -74,7 +75,7 @@ public class CarsListingActivity extends AppCompatActivity implements RecyclerVi
     public void onClick(View view, int position) {
         Vehicle vehicle = mRepoListAdapter.getCurrentList().get(position);
         Intent i = new Intent(this, CarDetailingActivity.class);
-        i.putExtra(CARDETAIL_EXTRA, vehicle);
+        i.putExtra(CAR_DETAIL_EXTRA, vehicle);
         startActivity(i);
 
     }
