@@ -10,11 +10,11 @@ import com.example.desafiowebmotors.listeners.RecyclerViewClickListener;
 import com.example.desafiowebmotors.model.Vehicle;
 
 
-public class RepoListAdapter extends PagedListAdapter<Vehicle, CarViewHolder> {
+public class VehicleListAdapter extends PagedListAdapter<Vehicle, CarViewHolder> {
     private RecyclerViewClickListener recyclerViewClickListener;
 
 
-    protected RepoListAdapter() {
+    protected VehicleListAdapter() {
         super(DIFF_CALLBACK);
     }
 
@@ -32,8 +32,8 @@ public class RepoListAdapter extends PagedListAdapter<Vehicle, CarViewHolder> {
 
     @Override
     public void onBindViewHolder(CarViewHolder holder, int position) {
-        Vehicle aRepoW = getItem(position);
-        ((CarViewHolder) holder).bind(aRepoW);
+        Vehicle vehicle = getItem(position);
+        ((CarViewHolder) holder).bind(vehicle);
     }
 
     private static final DiffUtil.ItemCallback<Vehicle> DIFF_CALLBACK = new DiffUtil.ItemCallback<Vehicle>() {

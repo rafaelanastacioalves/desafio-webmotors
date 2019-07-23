@@ -33,5 +33,8 @@ public class Vehicle implements Serializable {
     @SerializedName("Color")
     public String color;
 
+    @SerializedName("Model")
+    public String model;
+
 
 }

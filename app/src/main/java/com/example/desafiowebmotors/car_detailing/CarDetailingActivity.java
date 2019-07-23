@@ -3,6 +3,7 @@ package com.example.desafiowebmotors.car_detailing;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -53,6 +54,7 @@ public class CarDetailingActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        supportPostponeEnterTransition();
         setContentView(R.layout.activity_car_detailing);
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
@@ -69,17 +71,14 @@ public class CarDetailingActivity extends AppCompatActivity {
     private void bindView() {
 
 
-        vehicleDetailKm.setText(String.valueOf(vehicle.km));
+        vehicleDetailKm.setText(getString(R.string.refactor_me_Sasda,String.valueOf(vehicle.km)));
         vehicleDetailMake.setText(vehicle.make);
-        vehicleDetailModel.setText(String.valueOf(vehicle.yearModel));
-
+        vehicleDetailModel.setText(vehicle.model);
+        vehicleDetailYearModel.setText(getString(R.string.car_detail_year_model, String.valueOf(vehicle.yearModel)));
         vehicleDetailVersion.setText(vehicle.version);
-        vehicleDetailPrice.setText(vehicle.price);
-
+        vehicleDetailPrice.setText(Html.fromHtml(getString(R.string.car_detail_price, vehicle.price)));
         vehicleDetailColor.setText(vehicle.color);
-
-        vehicleDetailFab.setText(String.valueOf(vehicle.yearFab));
-
+        vehicleDetailFab.setText(getString(R.string.car_detail_year_fab, String.valueOf(vehicle.yearFab)));
 
         Picasso.get()
                 .load(vehicle.image)

@@ -13,8 +13,12 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity android:name=".car_detailing.CarDetailingActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".car_listing.CarsListingActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.desafiowebmotors.car_listing.VehicleListingActivity" />
+        </activity>
+        <activity android:name=".car_listing.VehicleListingActivity"
             >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

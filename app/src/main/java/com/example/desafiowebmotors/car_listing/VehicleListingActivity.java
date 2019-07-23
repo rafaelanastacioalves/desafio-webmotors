@@ -3,8 +3,11 @@ package com.example.desafiowebmotors.car_listing;
 import android.arch.lifecycle.ViewModelProviders;
 import android.arch.paging.PagedList;
 import android.content.Intent;
+import android.os.Build;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -18,12 +21,12 @@ import timber.log.Timber;
 
 import static com.example.desafiowebmotors.car_detailing.CarDetailingActivity.CAR_DETAIL_EXTRA;
 
-public class CarsListingActivity extends AppCompatActivity implements RecyclerViewClickListener {
+public class VehicleListingActivity extends AppCompatActivity implements RecyclerViewClickListener {
 
     private final RecyclerViewClickListener mClickListener = this;
-    private RepoListAdapter mRepoListAdapter;
+    private VehicleListAdapter vehicleListAdapter;
     private RecyclerView mRecyclerView;
-    private LiveDataRepoListViewModel mLiveDataRepoListViewModel;
+    private LiveDataVehicleListViewModel mLiveDataVehicleListViewModel;
 
 
     @Override
@@ -36,9 +39,9 @@ public class CarsListingActivity extends AppCompatActivity implements RecyclerVi
 
 
     private void subscribe() {
-        mLiveDataRepoListViewModel = ViewModelProviders.of(this).get(LiveDataRepoListViewModel.class);
+        mLiveDataVehicleListViewModel = ViewModelProviders.of(this).get(LiveDataVehicleListViewModel.class);
 
-        mLiveDataRepoListViewModel.getCarList().observe(this, mainEntities -> {
+        mLiveDataVehicleListViewModel.getCarList().observe(this, mainEntities -> {
             Timber.d("On Changed");
             populateRecyclerView(mainEntities);
         });
@@ -54,34 +57,45 @@ public class CarsListingActivity extends AppCompatActivity implements RecyclerVi
     }
 
     private void setupRecyclerView() {
-        mRecyclerView = (RecyclerView) findViewById(R.id.repo_list);
+        mRecyclerView = (RecyclerView) findViewById(R.id.vehicle_list);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         mRecyclerView.setLayoutManager(layoutManager);
-        if (mRepoListAdapter == null) {
-            mRepoListAdapter = new RepoListAdapter();
+        if (vehicleListAdapter == null) {
+            vehicleListAdapter = new VehicleListAdapter();
         }
-        mRepoListAdapter.setRecyclerViewClickListener(mClickListener);
-        mRecyclerView.setAdapter(mRepoListAdapter);
+        vehicleListAdapter.setRecyclerViewClickListener(mClickListener);
+        mRecyclerView.setAdapter(vehicleListAdapter);
     }
 
 
     private void populateRecyclerView(PagedList<Vehicle> data) {
-        mRepoListAdapter.submitList(data);
+        vehicleListAdapter.submitList(data);
 
     }
 
 
     @Override
     public void onClick(View view, int position) {
-        Vehicle vehicle = mRepoListAdapter.getCurrentList().get(position);
+        AppCompatImageView transitionImageView = view.findViewById(R.id.vehicle_photo);
+
+        Vehicle vehicle = vehicleListAdapter.getCurrentList().get(position);
         Intent i = new Intent(this, CarDetailingActivity.class);
         i.putExtra(CAR_DETAIL_EXTRA, vehicle);
-        startActivity(i);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Bundle bundle = null;
+            bundle = ActivityOptionsCompat.makeSceneTransitionAnimation(this,
+                    transitionImageView, transitionImageView.getTransitionName()).toBundle();
+            startActivity(i, bundle);
+
+        } else {
+            startActivity(i);
+        }
 
     }
 
-    public RepoListAdapter getAdapter() {
-        return mRepoListAdapter;
+    public VehicleListAdapter getAdapter() {
+        return vehicleListAdapter;
     }
 
 

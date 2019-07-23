@@ -8,19 +8,19 @@ import com.example.desafiowebmotors.model.Vehicle;
 public class DataSourceFactory extends DataSource.Factory<String, Vehicle> {
 
 
-    private MutableLiveData<PagedRepoDataSource> sourceLiveData = new MutableLiveData<PagedRepoDataSource>();
+    private MutableLiveData<PagedVehicleDataSource> sourceLiveData = new MutableLiveData<PagedVehicleDataSource>();
 
     public DataSourceFactory(){
 
     }
     @Override
     public DataSource<String, Vehicle> create() {
-        PagedRepoDataSource source = new PagedRepoDataSource();
+        PagedVehicleDataSource source = new PagedVehicleDataSource();
         sourceLiveData.postValue(source);
         return source;
     }
 
-    public MutableLiveData<PagedRepoDataSource> getDataSource() {
+    public MutableLiveData<PagedVehicleDataSource> getDataSource() {
         return sourceLiveData;
     }
 }

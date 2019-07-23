@@ -14,12 +14,12 @@ import io.reactivex.schedulers.Schedulers;
 import timber.log.Timber;
 
 
-public class PagedRepoDataSource extends PageKeyedDataSource<String, Vehicle> {
+public class PagedVehicleDataSource extends PageKeyedDataSource<String, Vehicle> {
 
 
     private MutableLiveData<Boolean> loadStatus = new MutableLiveData<Boolean>();
 
-    public PagedRepoDataSource() {
+    public PagedVehicleDataSource() {
 
         loadStatus.postValue(Boolean.TRUE);
     }
@@ -31,10 +31,10 @@ public class PagedRepoDataSource extends PageKeyedDataSource<String, Vehicle> {
         Single<List<Vehicle>> observable = repository.getVehiclesList(1);
         observable.subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(repoList -> {
+                .subscribe(vehicleList -> {
                             loadStatus.setValue(Boolean.FALSE);
                             callback.onResult(
-                                    repoList,
+                                    vehicleList,
                                     "",
                                     String.valueOf(1 + 1)
                             );
@@ -61,10 +61,10 @@ public class PagedRepoDataSource extends PageKeyedDataSource<String, Vehicle> {
         observable.subscribeOn(Schedulers.computation())
 
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(repoList -> {
+                .subscribe(vehicleList -> {
                             loadStatus.postValue(Boolean.FALSE);
                             callback.onResult(
-                                    repoList,
+                                    vehicleList,
                                     String.valueOf(Integer.valueOf(params.key) + 1)
                             );
                         },

@@ -1,18 +1,15 @@
 <resources>
-    <string name="app_name">Github JavaPop</string>
-    <string name="venha_conhecer_orlando">Venha conhecer Orlando!!! Venha conhecer Orlando!!! Venha conhecer Orlando!!! Venha conhecer Orlando!!! Venha conhecer Orlando!!! Venha conhecer Orlando!!! Venha conhecer Orlando!!!</string>
-    <string name="valor_text">5000,00</string>
-    <string name="title_orlando_example">Orlando</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="comprar">Comprar</string>
-    <string name="detail_entitiy_title_textview">Text</string>
-    <string name="title_repo_detail">Repo Detail</string>
-    <string name="fake_description_text">This is the best repository ever. This is the best repository ever. This is the best repository ever.</string>
-    <string name="small_text">Small Text......Small Text......Small Text......Small Text......Small Text......Small Text......</string>
-    <string name="no_repositories">Nenhum repositório para exibir</string>
-    <string name="no_pull_requests">Nenhum pull request para exibir</string>
+    <string name="app_name">Web Motors</string>
+    <string name="valor_text"><b>Preço:</b>\n R$5000,00</string>
+    <string name="fake_description_text">1.4 LXL 16V FLEX 4P AUTOMÁTICO</string>
+    <string name="small_text">Honda</string>
+    <string name="no_vehicles">Nenhum veículo para exibir</string>
     <string name="blank_value">-</string>
     <string name="update_google_play_services">Up to date Google Play Services is needed!</string>
     <string name="vehicle_imageview_transition_name">trip_package_imageview_transition</string>
-    <string name="refactor_me_eqweqwe">R$ %s</string>
+    <string name="car_detail_price"><![CDATA[<b>Preço:</b><br>R$ %s]]></string>
+    <string name="car_detail_year_model">Ano do modelo: %s</string>
+    <string name="car_detail_year_fab">Ano de fabricação: %s</string>
+    <string name="car_detail_color">Cor: %s</string>
+    <string name="refactor_me_Sasda">KM: %s</string>
 </resources>

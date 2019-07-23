@@ -5,10 +5,10 @@
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	tools:context="com.example.desafiowebmotors.car_listing.CarsListingActivity">
+	tools:context="com.example.desafiowebmotors.car_listing.VehicleListingActivity">
 
 	<android.support.v7.widget.RecyclerView
-		android:id="@+id/repo_list"
+		android:id="@+id/vehicle_list"
 		android:layout_width="0dp"
 		android:layout_height="0dp"
 		app:layout_constraintBottom_toBottomOf="parent"
